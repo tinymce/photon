@@ -42,6 +42,17 @@ var dependencies = [
     ]
   },
 
+  {
+    name: 'sugar',
+    repository: 'buildrepo2',
+    version: 'latest',
+    source: 'sugar.zip',
+    targets: [
+      { name: 'module/*.js', path: depend },
+      { name: 'depend/*.js', path: depend }
+    ]
+  },
+
   /**** demo dependencies ****/
   {
     name: 'exhibition',
