@@ -8,10 +8,11 @@ define(
     'ephox.sugar.Css',
     'ephox.sugar.Element',
     'ephox.sugar.Insert',
-    'ephox.sugar.Location'
+    'ephox.sugar.Location',
+    'ephox.sugar.Position'
   ],
 
-  function ($, Arr, Frames, Css, Element, Insert, Location) {
+  function ($, Arr, Frames, Css, Element, Insert, Location, Position) {
     return function () {
       var container = $('<div/>');
 
@@ -30,7 +31,6 @@ define(
 
       f1.load(function () {
         var c1 = f1.contents().find('body');
-        console.log('c1: ', c1);
         var element = $('<button>Blah</button>', c1[0]).css({
           float: 'right'
         });
@@ -41,32 +41,26 @@ define(
 
           element.click(function () {
             var path = Frames.pathTo(Element(element[0]), Element(document));
-            console.log('path: ', path.getOrDie('blah'));
-            console.log('path: ', path.fold(function () {
-              return 'none';
+            path.fold(function () {
+              console.log('Error: no path');
             }, function (v) {
-              var leftOffset = Arr.foldr(v, function (b, a) {
-                // TODO: Really need to export the location struct, because two passes here is ridiculous.
-                return Location.absolute(a).left() + b;
-              }, 0);
 
-              var topOffset = Arr.foldr(v, function (b, a) {
-                // TODO: Really need to export the location struct, because two passes here is ridiculous.
-                return Location.absolute(a).top() + b;
-              }, 0);
-
+              var newPosition = Arr.foldr(v, function (b, a) {
+                var abs = Location.absolute(a);
+                return b.translate(abs.left(), abs.top());
+              }, Location.absolute(Element(element[0])));
 
               var popup = Element(document.createElement('div'));
               Css.setAll(popup, {
                 position: 'absolute',
-                left: leftOffset + Location.absolute(Element(element[0])).left(),
-                top: topOffset + Location.absolute(Element(element[0])).top(),
+                left: newPosition.left(),
+                top: newPosition.top(),
                 width: 100,
                 height: 50,
                 'background-color': 'black'
               });
               Insert.append(popup, Element(document.body));
-            }));
+            });
           });
           c2.append(element);
         });
