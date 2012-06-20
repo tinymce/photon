@@ -9,9 +9,10 @@ define(
 
     var write = function (element, content) {
       var doc = Reader.doc(element);
-      doc.open();
-      doc.writeln(content);
-      doc.close();
+      var dom = doc.dom();
+      dom.open();
+      dom.writeln(content);
+      dom.close();
     };
 
     return {
