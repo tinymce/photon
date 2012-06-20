@@ -41,6 +41,7 @@ define(
 
           element.click(function () {
             var path = Frames.pathTo(Element(element[0]), Element(document));
+            console.log('path: ', path.getOrDie('blah'));
             console.log('path: ', path.fold(function () {
               return 'none';
             }, function (v) {

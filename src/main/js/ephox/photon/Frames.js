@@ -5,45 +5,37 @@ define(
     'ephox.compass.Arr',
     'ephox.peanut.Fun',
     'ephox.perhaps.Option',
+    'ephox.photon.Reader',
+    'ephox.sugar.Equal',
     'ephox.sugar.Find',
+    'ephox.sugar.Owner',
     'ephox.sugar.Tag'
   ],
 
-  function (Arr, Fun, Option, Find, Tag) {
+  function (Arr, Fun, Option, Reader, Equal, Find, Owner, Tag) {
 
     var curry = Fun.curry;
 
-    var iframeContents = function (iframe) {
-      return iframe.dom().contentDocument || iframe.dom().contentWindow.document || iframe.dom();
-    };
-
-    var contents = function (doc) {
-      return doc.dom().contentDocument || doc.dom().contentWindow ? iframeContents(doc) : doc.dom();
-    };
-
     var isDoc = function (element, doc) {
-      // TODO: Sugarise the content document / content window for an iframe.
-      // CONSIDER: Should this be using Elements?
-      return element.dom().ownerDocument === contents(doc);
+      var idoc = Reader.doc(doc);
+      var owner = Owner.owner(element);
+      return Equal.eq(owner, idoc);
     };
 
-    var blah = function (current, path, pred) {
-      var c = contents(current);
-      var frames = Find.findIn(c, 'iframe');
+    var pather = function (current, path, pred) {
+      var doc = Reader.doc(current);
+      var frames = Find.findIn(doc, 'iframe');
 
       return Arr.foldr(frames, function (b, a) {
-        var f = mogel(a, path.concat([a]), pred);
+        var newPath = path.concat([a]);
+        var f = pred(a) ? Option.some(newPath) : pather(a, newPath, pred);
         return f.isSome() ? f : b;
       }, Option.none());
     };
 
-    var mogel = function (current, path, pred) {
-      return pred(current) ? Option.some(path) : blah(current, path, pred);
-    };
-
     var pathTo = function (element, doc) {
       var pred = curry(isDoc, element);
-      return mogel(doc, [], pred);
+      return pather(doc, [], pred);
     };
 
     return {
