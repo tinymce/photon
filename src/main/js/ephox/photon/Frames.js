@@ -6,25 +6,24 @@ define(
     'ephox.peanut.Fun',
     'ephox.perhaps.Option',
     'ephox.photon.Reader',
-    'ephox.sugar.Equal',
-    'ephox.sugar.Find',
-    'ephox.sugar.Owner',
-    'ephox.sugar.Tag'
+    'ephox.sugar.api.Compare',
+    'ephox.sugar.api.SelectorFilter',
+    'ephox.sugar.api.Traverse'
   ],
 
-  function (Arr, Fun, Option, Reader, Equal, Find, Owner, Tag) {
+  function (Arr, Fun, Option, Reader, Compare, SelectorFilter, Traverse) {
 
     var curry = Fun.curry;
 
     var isDoc = function (element, doc) {
       var idoc = Reader.doc(doc);
-      var owner = Owner.owner(element);
-      return Equal.eq(owner, idoc);
+      var owner = Traverse.owner(element);
+      return Compare.eq(owner, idoc);
     };
 
     var pather = function (current, path, pred) {
       var doc = Reader.doc(current);
-      var frames = Find.findIn(doc, 'iframe');
+      var frames = SelectorFilter.descendants(doc, 'iframe');
 
       return Arr.foldr(frames, function (b, a) {
         var newPath = path.concat([a]);

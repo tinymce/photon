@@ -2,14 +2,14 @@ define(
   'ephox.photon.demo.Popup',
 
   [
-    'ephox.sugar.Css',
-    'ephox.sugar.Element'
+    'ephox.sugar.api.Css',
+    'ephox.sugar.api.Element'
   ],
 
   function (Css, Element) {
 
     return function (position) {
-      var popup = Element(document.createElement('div'));
+      var popup = Element.fromTag('div');
       Css.setAll(popup, {
         position: 'absolute',
         left: position.left(),

@@ -4,11 +4,10 @@ define(
   [
     'ephox.compass.Arr',
     'ephox.photon.Frames',
-    'ephox.sugar.Element',
-    'ephox.sugar.Location'
+    'ephox.sugar.api.Location'
   ],
 
-  function (Arr, Frames, Element, Location) {
+  function (Arr, Frames, Location) {
 
     var position = function (element, doc) {
       var path = Frames.pathTo(element, doc);

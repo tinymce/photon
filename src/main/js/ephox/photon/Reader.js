@@ -3,7 +3,7 @@ define(
 
   [
     'ephox.perhaps.Option',
-    'ephox.sugar.Element'
+    'ephox.sugar.api.Element'
   ],
 
   function (Option, Element) {
@@ -11,7 +11,7 @@ define(
     var iframeDoc = function (element) {
       var dom = element.dom();
       var idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;
-      return idoc !== undefined && idoc !== null ? Option.some(Element(idoc)) : Option.none();
+      return idoc !== undefined && idoc !== null ? Option.some(Element.fromDom(idoc)) : Option.none();
     };
 
     var doc = function (element) {
