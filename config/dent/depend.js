@@ -16,8 +16,7 @@ var dependencies = [
     version: 'latest',
     source: 'compass.zip',
     targets: [
-      { name: 'module/*.js', path: depend },
-      { name: 'depend/*.js', path: depend }
+      { name: 'module/*.js', path: depend }
     ]
   },
 
