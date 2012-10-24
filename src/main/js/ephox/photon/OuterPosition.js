@@ -15,8 +15,8 @@ define(
   function (Arr, Fun, Frames, Position, Height, Location, Scroll, document) {
     var find = function (element) {
       var scroll = Scroll.get(document);
-      var offset = Location.absolute(anchor);
-      var path = Frames.pathTo(anchor, document);
+      var offset = Location.absolute(element);
+      var path = Frames.pathTo(element, document);
 
       return path.fold(Fun.constant(offset), function (v) {
         var r = Arr.foldr(v, function (b, a) {
@@ -27,7 +27,7 @@ define(
           };
         }, { left: 0, top: 0 });
 
-        return Position(r.left + offset.left() - scroll.left(), r.top + offset.top() + Height.getOuter(anchor) - scroll.top());
+        return Position(r.left + offset.left() - scroll.left(), r.top + offset.top() + Height.getOuter(element) - scroll.top());
       });
     };
 
