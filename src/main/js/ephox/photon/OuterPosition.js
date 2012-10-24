@@ -6,17 +6,19 @@ define(
     'ephox.peanut.Fun',
     'ephox.photon.Frames',
     'ephox.sugar.alien.Position',
+    'ephox.sugar.api.Element',
     'ephox.sugar.api.Height',
     'ephox.sugar.api.Location',
     'ephox.sugar.api.Scroll',
     'global!document'
   ],
 
-  function (Arr, Fun, Frames, Position, Height, Location, Scroll, document) {
+  function (Arr, Fun, Frames, Position, Element, Height, Location, Scroll, document) {
     var find = function (element) {
-      var scroll = Scroll.get(document);
+      var doc = Element.fromDom(document);
+      var scroll = Scroll.get(doc);
       var offset = Location.absolute(element);
-      var path = Frames.pathTo(element, document);
+      var path = Frames.pathTo(element, doc);
 
       return path.fold(Fun.constant(offset), function (v) {
         var r = Arr.foldr(v, function (b, a) {
