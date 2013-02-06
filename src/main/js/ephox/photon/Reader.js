@@ -10,8 +10,15 @@ define(
 
     var iframeDoc = function (element) {
       var dom = element.dom();
-      var idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;
-      return idoc !== undefined && idoc !== null ? Option.some(Element.fromDom(idoc)) : Option.none();
+      try {
+        var idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;
+        return idoc !== undefined && idoc !== null ? Option.some(Element.fromDom(idoc)) : Option.none();
+      } catch (err) {
+        // ASSUMPTION: Permission errors result in an unusable iframe.
+        console.log('Error reading iframe: ', dom);
+        console.log('Error was: ' + err);
+        return Option.none();
+      }
     };
 
     var doc = function (element) {
