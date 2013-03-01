@@ -66,6 +66,17 @@ define(
 
         c1.each(function (cc) {
           Insert.append(cc, f2);
+
+          var firstButton = Element.fromTag('button');
+          Event.bind(firstButton, 'click', function () {
+            var doc = Element.fromDom(document);
+            var position = Positioner.position(firstButton, doc);
+            position.each(function (v) {
+              var popup = Popup(v);
+              Insert.append(Element.fromDom(document.body), popup);
+            });
+          });
+          Insert.append(cc, firstButton);
         });
       });
 
