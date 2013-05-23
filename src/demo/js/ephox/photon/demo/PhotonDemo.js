@@ -5,6 +5,7 @@ define(
     'ephox.compass.Arr',
     'ephox.perhaps.Option',
     'ephox.photon.Frames',
+    'ephox.photon.OuterPosition',
     'ephox.photon.Reader',
     'ephox.photon.demo.Popup',
     'ephox.photon.demo.Positioner',
@@ -15,7 +16,7 @@ define(
     'ephox.sugar.api.SelectorFind'
   ],
 
-  function (Arr, Option, Frames, Reader, Popup, Positioner, Css, Element, Event, Insert, SelectorFind) {
+  function (Arr, Option, Frames, OuterPosition, Reader, Popup, Positioner, Css, Element, Event, Insert, SelectorFind) {
     return function () {
       var container = Element.fromTag('div');
 
@@ -52,11 +53,9 @@ define(
 
           Event.bind(button, 'click', function () {
             var doc = Element.fromDom(document);
-            var position = Positioner.position(button, doc);
-            position.each(function (v) {
-              var popup = Popup(v);
-              Insert.append(Element.fromDom(document.body), popup);
-            });
+            var position = OuterPosition.find(button);
+            var popup = Popup(position);
+            Insert.append(Element.fromDom(document.body), popup);
           });
 
           c2.each(function (cc) {
@@ -70,11 +69,9 @@ define(
           var firstButton = Element.fromTag('button');
           Event.bind(firstButton, 'click', function () {
             var doc = Element.fromDom(document);
-            var position = Positioner.position(firstButton, doc);
-            position.each(function (v) {
-              var popup = Popup(v);
-              Insert.append(Element.fromDom(document.body), popup);
-            });
+            var position = OuterPosition.find(firstButton);
+            var popup = Popup(position);
+            Insert.append(Element.fromDom(document.body), popup);
           });
           Insert.append(cc, firstButton);
         });
