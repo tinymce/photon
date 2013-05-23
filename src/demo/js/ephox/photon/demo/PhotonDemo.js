@@ -2,13 +2,9 @@ define(
   'ephox.photon.demo.PhotonDemo',
 
   [
-    'ephox.compass.Arr',
-    'ephox.perhaps.Option',
-    'ephox.photon.Frames',
     'ephox.photon.OuterPosition',
     'ephox.photon.Reader',
     'ephox.photon.demo.Popup',
-    'ephox.photon.demo.Positioner',
     'ephox.sugar.api.Css',
     'ephox.sugar.api.Element',
     'ephox.sugar.api.Event',
@@ -16,7 +12,7 @@ define(
     'ephox.sugar.api.SelectorFind'
   ],
 
-  function (Arr, Option, Frames, OuterPosition, Reader, Popup, Positioner, Css, Element, Event, Insert, SelectorFind) {
+  function (OuterPosition, Reader, Popup, Css, Element, Event, Insert, SelectorFind) {
     return function () {
       var container = Element.fromTag('div');
 

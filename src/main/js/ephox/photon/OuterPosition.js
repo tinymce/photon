@@ -5,6 +5,7 @@ define(
     'ephox.compass.Arr',
     'ephox.peanut.Fun',
     'ephox.photon.Frames',
+    'ephox.photon.Navigation',
     'ephox.sugar.alien.Position',
     'ephox.sugar.api.Element',
     'ephox.sugar.api.Location',
@@ -12,11 +13,11 @@ define(
     'global!document'
   ],
 
-  function (Arr, Fun, Frames, Position, Element, Location, Scroll, document) {
+  function (Arr, Fun, Frames, Navigation, Position, Element, Location, Scroll, document) {
     var find = function (element) {
       var doc = Element.fromDom(document);
       var scroll = Scroll.get(doc);
-      var path = Frames.pathTo(element, doc);
+      var path = Frames.pathTo(element, Navigation);
 
       return path.fold(Fun.curry(Location.absolute, element), function (frames) {
         var offset = Location.viewport(element);
