@@ -8,10 +8,11 @@ define(
     'ephox.sugar.api.DomEvent',
     'ephox.sugar.api.Element',
     'ephox.sugar.api.Insert',
-    'ephox.sugar.api.Remove'
+    'ephox.sugar.api.Remove',
+    'global!setTimeout'
   ],
 
-  function (Fun, Writer, Css, DomEvent, Element, Insert, Remove) {
+  function (Fun, Writer, Css, DomEvent, Element, Insert, Remove, setTimeout) {
     return function (uiContainer) {
        /**
         * Creates a sandbox to play in.
