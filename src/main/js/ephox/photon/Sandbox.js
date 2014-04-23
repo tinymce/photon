@@ -48,15 +48,15 @@ define(
           var body = Element.fromDom(rawBody);
 
           // cache
-          var insertMe = f(doc, body);
+          var result = f(doc, body);
 
           // unbind and remove everything
           load.unbind();
           Remove.remove(outputContainer);
 
-          // setTImeout should allow the garbage collector to cleanup if necessary
+          // setTimeout should allow the garbage collector to cleanup if necessary
           // before operating on our big string
-          setTimeout(Fun.curry(callback, insertMe), 0);
+          setTimeout(Fun.curry(callback, result), 0);
         });
         Insert.append(outputContainer, iframe);
         Insert.append(uiContainer, outputContainer);
