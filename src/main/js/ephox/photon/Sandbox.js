@@ -55,7 +55,6 @@ define(
           Remove.remove(outputContainer);
 
           // setTimeout should allow the garbage collector to cleanup if necessary
-          // before operating on our big string
           setTimeout(Fun.curry(callback, result), 0);
         });
         Insert.append(outputContainer, iframe);
