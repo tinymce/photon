@@ -4,18 +4,18 @@ define(
   [
     'ephox.perhaps.Option',
     'ephox.sugar.api.Element',
-    'ephox.sugar.api.Traverse'
+    'ephox.sugar.api.Traverse',
+    'global!document'
   ],
 
-  function (Option, Element, Traverse) {
+  function (Option, Element, Traverse, document) {
     var view = function (doc) {
-      var frame = doc.dom().defaultView.frameElement;
-      if (frame !== null && frame !== undefined) {
-        var element = Element.fromDom(frame);
-        return Option.some(element);
-      } else {
-        return Option.none();
-      }
+      // Only walk up to the document this script is defined in.
+      // This prevents walking up to the parent window when the editor is in an iframe.
+      var element = doc.dom() === document ?
+                      Option.none()
+                    : Option.from(doc.dom().defaultView.frameElement);
+      return element.map(Element.fromDom);
     };
 
     var owner = function (element) {
