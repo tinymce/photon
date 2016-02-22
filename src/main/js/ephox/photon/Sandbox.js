@@ -37,6 +37,9 @@ define(
         });
 
         var load = DomEvent.bind(iframe, 'load', function () {
+          load.unbind();
+
+          // This fires a load event on Edge
           Writer.write(iframe, html);
 
           var rawDoc = iframe.dom().contentWindow.document;
@@ -51,7 +54,6 @@ define(
           var result = f(doc, body);
 
           // unbind and remove everything
-          load.unbind();
           Remove.remove(outputContainer);
 
           // setTimeout should allow the garbage collector to cleanup if necessary
