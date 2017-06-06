@@ -13,7 +13,7 @@ define(
 
       var doc = Reader.doc(element);
       var dom = doc.dom();
-      dom.open();
+      dom.open('text/html', 'replace'); // Dont create new history https://bugzilla.mozilla.org/show_bug.cgi?id=1368869
       dom.writeln(content);
       dom.close();
     };
