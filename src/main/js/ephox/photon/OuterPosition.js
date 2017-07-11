@@ -6,14 +6,14 @@ define(
     'ephox.peanut.Fun',
     'ephox.photon.Frames',
     'ephox.photon.Navigation',
-    'ephox.sugar.alien.Position',
-    'ephox.sugar.api.Element',
-    'ephox.sugar.api.Location',
-    'ephox.sugar.api.Scroll',
+    'ephox.sugar.api.node.Element',
+    'ephox.sugar.api.view.Location',
+    'ephox.sugar.api.view.Position',
+    'ephox.sugar.api.view.Scroll',
     'global!document'
   ],
 
-  function (Arr, Fun, Frames, Navigation, Position, Element, Location, Scroll, document) {
+  function (Arr, Fun, Frames, Navigation, Element, Location, Position, Scroll, document) {
     var find = function (element) {
       var doc = Element.fromDom(document);
       var scroll = Scroll.get(doc);

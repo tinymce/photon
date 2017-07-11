@@ -4,15 +4,15 @@ define(
   [
     'ephox.peanut.Fun',
     'ephox.photon.Writer',
-    'ephox.sugar.api.Css',
-    'ephox.sugar.api.DomEvent',
-    'ephox.sugar.api.Element',
-    'ephox.sugar.api.Insert',
-    'ephox.sugar.api.Remove',
+    'ephox.sugar.api.dom.Insert',
+    'ephox.sugar.api.dom.Remove',
+    'ephox.sugar.api.events.DomEvent',
+    'ephox.sugar.api.node.Element',
+    'ephox.sugar.api.properties.Css',
     'global!setTimeout'
   ],
 
-  function (Fun, Writer, Css, DomEvent, Element, Insert, Remove, setTimeout) {
+  function (Fun, Writer, Insert, Remove, DomEvent, Element, Css, setTimeout) {
     return function (uiContainer) {
        /**
         * Creates a sandbox to play in.

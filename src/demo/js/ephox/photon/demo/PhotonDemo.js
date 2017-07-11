@@ -5,14 +5,14 @@ define(
     'ephox.photon.OuterPosition',
     'ephox.photon.Reader',
     'ephox.photon.demo.Popup',
-    'ephox.sugar.api.Css',
-    'ephox.sugar.api.Element',
-    'ephox.sugar.api.Event',
-    'ephox.sugar.api.Insert',
-    'ephox.sugar.api.SelectorFind'
+    'ephox.sugar.api.dom.Insert',
+    'ephox.sugar.api.events.DomEvent',
+    'ephox.sugar.api.node.Element',
+    'ephox.sugar.api.properties.Css',
+    'ephox.sugar.api.search.SelectorFind'
   ],
 
-  function (OuterPosition, Reader, Popup, Css, Element, Event, Insert, SelectorFind) {
+  function (OuterPosition, Reader, Popup, Insert, DomEvent, Element, Css, SelectorFind) {
     return function () {
       var container = Element.fromTag('div');
 
@@ -26,11 +26,11 @@ define(
       Css.setAll(f1, {
         width: '800px',
         height: '450px',
-        left: 200,
+        left: '200px',
         position: 'absolute'
       });
 
-      Event.bind(f1, 'load', function () {
+      DomEvent.bind(f1, 'load', function () {
         var doc1 = Reader.doc(f1);
         var c1 = SelectorFind.descendant(doc1, 'body');
 
@@ -39,15 +39,15 @@ define(
 
         var f2 = frame();
         Css.setAll(f2, {
-          left: 50,
-          top: 150,
+          left: '50px',
+          top: '150px',
           position: 'absolute'
         });
 
-        Event.bind(f2, 'load', function () {
+        DomEvent.bind(f2, 'load', function () {
           var c2 = SelectorFind.descendant(Reader.doc(f2), 'body');
 
-          Event.bind(button, 'click', function () {
+          DomEvent.bind(button, 'click', function () {
             var doc = Element.fromDom(document);
             var position = OuterPosition.find(button);
             var popup = Popup(position);
@@ -63,7 +63,7 @@ define(
           Insert.append(cc, f2);
 
           var firstButton = Element.fromTag('button');
-          Event.bind(firstButton, 'click', function () {
+          DomEvent.bind(firstButton, 'click', function () {
             var doc = Element.fromDom(document);
             var position = OuterPosition.find(firstButton);
             var popup = Popup(position);
@@ -75,7 +75,7 @@ define(
 
       Insert.append(container, f1);
       Css.setAll(container, {
-        height: 500
+        height: '500px'
       });
 
       var blob = document.getElementById('ephox-ui');
