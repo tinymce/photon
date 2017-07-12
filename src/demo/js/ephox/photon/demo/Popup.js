@@ -2,11 +2,11 @@ define(
   'ephox.photon.demo.Popup',
 
   [
-    'ephox.sugar.api.node.Element',
-    'ephox.sugar.api.properties.Css'
+    'ephox.syrup.api.Css',
+    'ephox.syrup.api.Element'
   ],
 
-  function (Element, Css) {
+  function (Css, Element) {
 
     return function (position) {
       var popup = Element.fromTag('div');

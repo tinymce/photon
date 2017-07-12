@@ -3,7 +3,7 @@ define(
 
   [
     'ephox.perhaps.Option',
-    'ephox.sugar.api.node.Element'
+    'ephox.syrup.api.Element'
   ],
 
   function (Option, Element) {

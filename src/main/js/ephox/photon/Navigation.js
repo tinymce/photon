@@ -3,8 +3,8 @@ define(
 
   [
     'ephox.perhaps.Option',
-    'ephox.sugar.api.node.Element',
-    'ephox.sugar.api.search.Traverse',
+    'ephox.syrup.api.Element',
+    'ephox.syrup.api.Traverse',
     'global!document'
   ],
 

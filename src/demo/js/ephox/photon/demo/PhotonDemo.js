@@ -5,14 +5,14 @@ define(
     'ephox.photon.OuterPosition',
     'ephox.photon.Reader',
     'ephox.photon.demo.Popup',
-    'ephox.sugar.api.dom.Insert',
-    'ephox.sugar.api.events.DomEvent',
-    'ephox.sugar.api.node.Element',
-    'ephox.sugar.api.properties.Css',
-    'ephox.sugar.api.search.SelectorFind'
+    'ephox.syrup.api.Css',
+    'ephox.syrup.api.Element',
+    'ephox.syrup.api.DomEvent',
+    'ephox.syrup.api.Insert',
+    'ephox.syrup.api.SelectorFind'
   ],
 
-  function (OuterPosition, Reader, Popup, Insert, DomEvent, Element, Css, SelectorFind) {
+  function (OuterPosition, Reader, Popup, Css, Element, DomEvent, Insert, SelectorFind) {
     return function () {
       var container = Element.fromTag('div');
 
