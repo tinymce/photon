@@ -6,10 +6,10 @@ define(
     'ephox.peanut.Fun',
     'ephox.photon.Frames',
     'ephox.photon.Navigation',
-    'ephox.sugar.alien.Position',
-    'ephox.sugar.api.Element',
-    'ephox.sugar.api.Location',
-    'ephox.sugar.api.Scroll',
+    'ephox.syrup.alien.Position',
+    'ephox.syrup.api.Element',
+    'ephox.syrup.api.Location',
+    'ephox.syrup.api.Scroll',
     'global!document'
   ],
 

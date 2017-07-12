@@ -4,11 +4,11 @@ define(
   [
     'ephox.peanut.Fun',
     'ephox.photon.Writer',
-    'ephox.sugar.api.Css',
-    'ephox.sugar.api.DomEvent',
-    'ephox.sugar.api.Element',
-    'ephox.sugar.api.Insert',
-    'ephox.sugar.api.Remove',
+    'ephox.syrup.api.Css',
+    'ephox.syrup.api.DomEvent',
+    'ephox.syrup.api.Element',
+    'ephox.syrup.api.Insert',
+    'ephox.syrup.api.Remove',
     'global!setTimeout'
   ],
 

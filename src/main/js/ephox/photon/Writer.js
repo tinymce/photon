@@ -3,7 +3,7 @@ define(
 
   [
     'ephox.photon.Reader',
-    'ephox.sugar.api.Body'
+    'ephox.syrup.api.Body'
   ],
 
   function (Reader, Body) {
