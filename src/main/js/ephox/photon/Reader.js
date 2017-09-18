@@ -2,8 +2,8 @@ define(
   'ephox.photon.Reader',
 
   [
-    'ephox.perhaps.Option',
-    'ephox.syrup.api.Element'
+    'ephox.katamari.api.Option',
+    'ephox.sugar.api.node.Element'
   ],
 
   function (Option, Element) {

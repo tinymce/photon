@@ -2,7 +2,7 @@ test(
   'FramesTest',
 
   [
-    'ephox.perhaps.Option',
+    'ephox.katamari.api.Option',
     'ephox.photon.Frames'
   ],
 

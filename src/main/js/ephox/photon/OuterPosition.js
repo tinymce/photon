@@ -2,14 +2,14 @@ define(
   'ephox.photon.OuterPosition',
 
   [
-    'ephox.compass.Arr',
-    'ephox.peanut.Fun',
+    'ephox.katamari.api.Arr',
+    'ephox.katamari.api.Fun',
     'ephox.photon.Frames',
     'ephox.photon.Navigation',
-    'ephox.syrup.alien.Position',
-    'ephox.syrup.api.Element',
-    'ephox.syrup.api.Location',
-    'ephox.syrup.api.Scroll',
+    'ephox.sugar.api.view.Position',
+    'ephox.sugar.api.node.Element',
+    'ephox.sugar.api.dom.Location',
+    'ephox.sugar.api.view.Scroll',
     'global!document'
   ],
 
