@@ -5,11 +5,11 @@ define(
     'ephox.photon.OuterPosition',
     'ephox.photon.Reader',
     'ephox.photon.demo.Popup',
-    'ephox.syrup.api.Css',
-    'ephox.syrup.api.Element',
-    'ephox.syrup.api.DomEvent',
-    'ephox.syrup.api.Insert',
-    'ephox.syrup.api.SelectorFind'
+    'ephox.sugar.api.properties.Css',
+    'ephox.sugar.api.node.Element',
+    'ephox.sugar.api.events.DomEvent',
+    'ephox.sugar.api.dom.Insert',
+    'ephox.sugar.api.search.SelectorFind'
   ],
 
   function (OuterPosition, Reader, Popup, Css, Element, DomEvent, Insert, SelectorFind) {

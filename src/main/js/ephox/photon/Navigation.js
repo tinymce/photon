@@ -2,9 +2,9 @@ define(
   'ephox.photon.Navigation',
 
   [
-    'ephox.perhaps.Option',
-    'ephox.syrup.api.Element',
-    'ephox.syrup.api.Traverse',
+    'ephox.katamari.api.Option',
+    'ephox.sugar.api.node.Element',
+    'ephox.sugar.api.search.Traverse',
     'global!document'
   ],
 

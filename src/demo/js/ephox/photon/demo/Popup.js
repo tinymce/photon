@@ -2,8 +2,8 @@ define(
   'ephox.photon.demo.Popup',
 
   [
-    'ephox.syrup.api.Css',
-    'ephox.syrup.api.Element'
+    'ephox.sugar.api.properties.Css',
+    'ephox.sugar.api.node.Element'
   ],
 
   function (Css, Element) {

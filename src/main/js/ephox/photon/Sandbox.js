@@ -2,13 +2,13 @@ define(
   'ephox.photon.Sandbox',
 
   [
-    'ephox.peanut.Fun',
+    'ephox.katamari.api.Fun',
     'ephox.photon.Writer',
-    'ephox.syrup.api.Css',
-    'ephox.syrup.api.DomEvent',
-    'ephox.syrup.api.Element',
-    'ephox.syrup.api.Insert',
-    'ephox.syrup.api.Remove',
+    'ephox.sugar.api.properties.Css',
+    'ephox.sugar.api.events.DomEvent',
+    'ephox.sugar.api.node.Element',
+    'ephox.sugar.api.dom.Insert',
+    'ephox.sugar.api.dom.Remove',
     'global!setTimeout'
   ],
 
