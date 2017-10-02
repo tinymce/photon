@@ -1,5 +1,5 @@
 # Description
-`photon` is a project that handles absolute position calculations in iframes.
+`photon` is a project that handles reading and writing to iframes as well as absolute position calculations in iframes.
 # Installation
 `photon` is available as an `npm` package.  You can install it via the npm package `@ephox/photon`
 ## Install from npm
