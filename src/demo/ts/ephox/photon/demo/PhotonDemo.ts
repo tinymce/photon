@@ -7,74 +7,70 @@ import { DomEvent } from '@ephox/sugar';
 import { Insert } from '@ephox/sugar';
 import { SelectorFind } from '@ephox/sugar';
 
+var container = Element.fromTag('div');
 
+var frame = function () {
+  var r = Element.fromTag('iframe');
+  Css.set(r, 'src', '#s' + Math.random());
+  return r;
+};
 
-export default <any> function () {
-  var container = Element.fromTag('div');
+var f1 = frame();
+Css.setAll(f1, {
+  width: '800px',
+  height: '450px',
+  left: '200px',
+  position: 'absolute'
+});
 
-  var frame = function () {
-    var r = Element.fromTag('iframe');
-    Css.set(r, 'src', '#s' + Math.random());
-    return r;
-  };
+DomEvent.bind(f1, 'load', function () {
+  var doc1 = Reader.doc(f1);
+  var c1 = SelectorFind.descendant(doc1, 'body');
 
-  var f1 = frame();
-  Css.setAll(f1, {
-    width: '800px',
-    height: '450px',
-    left: '200px',
+  var button = Element.fromTag('button');
+  Css.set(button, 'float', 'right');
+
+  var f2 = frame();
+  Css.setAll(f2, {
+    left: '50px',
+    top: '150px',
     position: 'absolute'
   });
 
-  DomEvent.bind(f1, 'load', function () {
-    var doc1 = Reader.doc(f1);
-    var c1 = SelectorFind.descendant(doc1, 'body');
+  DomEvent.bind(f2, 'load', function () {
+    var c2 = SelectorFind.descendant(Reader.doc(f2), 'body');
 
-    var button = Element.fromTag('button');
-    Css.set(button, 'float', 'right');
-
-    var f2 = frame();
-    Css.setAll(f2, {
-      left: '50px',
-      top: '150px',
-      position: 'absolute'
+    DomEvent.bind(button, 'click', function () {
+      var doc = Element.fromDom(document);
+      var position = OuterPosition.find(button);
+      var popup = Popup(position);
+      Insert.append(Element.fromDom(document.body), popup);
     });
 
-    DomEvent.bind(f2, 'load', function () {
-      var c2 = SelectorFind.descendant(Reader.doc(f2), 'body');
-
-      DomEvent.bind(button, 'click', function () {
-        var doc = Element.fromDom(document);
-        var position = OuterPosition.find(button);
-        var popup = Popup(position);
-        Insert.append(Element.fromDom(document.body), popup);
-      });
-
-      c2.each(function (cc) {
-        Insert.append(cc, button);
-      });
-    });
-
-    c1.each(function (cc) {
-      Insert.append(cc, f2);
-
-      var firstButton = Element.fromTag('button');
-      DomEvent.bind(firstButton, 'click', function () {
-        var doc = Element.fromDom(document);
-        var position = OuterPosition.find(firstButton);
-        var popup = Popup(position);
-        Insert.append(Element.fromDom(document.body), popup);
-      });
-      Insert.append(cc, firstButton);
+    c2.each(function (cc) {
+      Insert.append(cc, button);
     });
   });
 
-  Insert.append(container, f1);
-  Css.setAll(container, {
-    height: '500px'
-  });
+  c1.each(function (cc) {
+    Insert.append(cc, f2);
 
-  var blob = document.getElementById('ephox-ui');
-  var blobElement = Element.fromDom(blob);
-  Insert.append(blobElement, container);
-};
+    var firstButton = Element.fromTag('button');
+    DomEvent.bind(firstButton, 'click', function () {
+      var doc = Element.fromDom(document);
+      var position = OuterPosition.find(firstButton);
+      var popup = Popup(position);
+      Insert.append(Element.fromDom(document.body), popup);
+    });
+    Insert.append(cc, firstButton);
+  });
+});
+
+Insert.append(container, f1);
+Css.setAll(container, {
+  height: '500px'
+});
+
+var blob = document.getElementById('ephox-ui');
+var blobElement = Element.fromDom(blob);
+Insert.append(blobElement, container);
