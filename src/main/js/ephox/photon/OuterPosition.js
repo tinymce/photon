@@ -1,41 +1,32 @@
-define(
-  'ephox.photon.OuterPosition',
+import { Arr } from '@ephox/katamari';
+import { Fun } from '@ephox/katamari';
+import Frames from './Frames';
+import Navigation from './Navigation';
+import { Element } from '@ephox/sugar';
+import { Location } from '@ephox/sugar';
+import { Position } from '@ephox/sugar';
+import { Scroll } from '@ephox/sugar';
 
-  [
-    'ephox.katamari.api.Arr',
-    'ephox.katamari.api.Fun',
-    'ephox.photon.Frames',
-    'ephox.photon.Navigation',
-    'ephox.sugar.api.node.Element',
-    'ephox.sugar.api.view.Location',
-    'ephox.sugar.api.view.Position',
-    'ephox.sugar.api.view.Scroll',
-    'global!document'
-  ],
+var find = function (element) {
+  var doc = Element.fromDom(document);
+  var scroll = Scroll.get(doc);
+  var path = Frames.pathTo(element, Navigation);
 
-  function (Arr, Fun, Frames, Navigation, Element, Location, Position, Scroll, document) {
-    var find = function (element) {
-      var doc = Element.fromDom(document);
-      var scroll = Scroll.get(doc);
-      var path = Frames.pathTo(element, Navigation);
+  return path.fold(Fun.curry(Location.absolute, element), function (frames) {
+    var offset = Location.viewport(element);
 
-      return path.fold(Fun.curry(Location.absolute, element), function (frames) {
-        var offset = Location.viewport(element);
+    var r = Arr.foldr(frames, function (b, a) {
+      var loc = Location.viewport(a);
+      return {
+        left: b.left + loc.left(),
+        top: b.top + loc.top()
+      };
+    }, { left: 0, top: 0 });
 
-        var r = Arr.foldr(frames, function (b, a) {
-          var loc = Location.viewport(a);
-          return {
-            left: b.left + loc.left(),
-            top: b.top + loc.top()
-          };
-        }, { left: 0, top: 0 });
+    return Position(r.left + offset.left() + scroll.left(), r.top + offset.top() + scroll.top());
+  });
+};
 
-        return Position(r.left + offset.left() + scroll.left(), r.top + offset.top() + scroll.top());
-      });
-    };
-
-    return {
-      find: find
-    };
-  }
-);
+export default <any> {
+  find: find
+};

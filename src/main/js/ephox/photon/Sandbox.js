@@ -1,71 +1,64 @@
-define(
-  'ephox.photon.Sandbox',
+import { Fun } from '@ephox/katamari';
+import Writer from './Writer';
+import { Css } from '@ephox/sugar';
+import { DomEvent } from '@ephox/sugar';
+import { Element } from '@ephox/sugar';
+import { Insert } from '@ephox/sugar';
+import { Remove } from '@ephox/sugar';
 
-  [
-    'ephox.katamari.api.Fun',
-    'ephox.photon.Writer',
-    'ephox.sugar.api.properties.Css',
-    'ephox.sugar.api.events.DomEvent',
-    'ephox.sugar.api.node.Element',
-    'ephox.sugar.api.dom.Insert',
-    'ephox.sugar.api.dom.Remove',
-    'global!setTimeout'
-  ],
 
-  function (Fun, Writer, Css, DomEvent, Element, Insert, Remove, setTimeout) {
-    return function (uiContainer) {
-       /**
-        * Creates a sandbox to play in.
-        *
-        * Asynchronously creates an iframe, runs the synchronous function `f` on the DOM, and then passes the result to the callback.
-        *
-        * This is done so that the sandbox can guarantee the iframe has been removed from the page, and available for garbage collection, before the callback is executed.
-        *
-        * html:
-        *   source to load into the iframe
-        * f: (document -> body -> A)
-        *   function that operates on the iframe DOM, passed both document reference and body element
-        * callback: (A -> Unit)
-        *   function that receives the output of `f` when the iframe has been cleaned up
-        */
-      var play = function (html, f, callback) {
-        var outputContainer = Element.fromTag('div');
-        var iframe = Element.fromTag('iframe');
 
-        Css.setAll(outputContainer, {
-          display: 'none'
-        });
+export default <any> function (uiContainer) {
+   /**
+    * Creates a sandbox to play in.
+    *
+    * Asynchronously creates an iframe, runs the synchronous function `f` on the DOM, and then passes the result to the callback.
+    *
+    * This is done so that the sandbox can guarantee the iframe has been removed from the page, and available for garbage collection, before the callback is executed.
+    *
+    * html:
+    *   source to load into the iframe
+    * f: (document -> body -> A)
+    *   function that operates on the iframe DOM, passed both document reference and body element
+    * callback: (A -> Unit)
+    *   function that receives the output of `f` when the iframe has been cleaned up
+    */
+  var play = function (html, f, callback) {
+    var outputContainer = Element.fromTag('div');
+    var iframe = Element.fromTag('iframe');
 
-        var load = DomEvent.bind(iframe, 'load', function () {
-          load.unbind();
+    Css.setAll(outputContainer, {
+      display: 'none'
+    });
 
-          // This fires a load event on Edge
-          Writer.write(iframe, html);
+    var load = DomEvent.bind(iframe, 'load', function () {
+      load.unbind();
 
-          var rawDoc = iframe.dom().contentWindow.document;
-          if (rawDoc === undefined) throw "sandbox iframe load event did not fire correctly";
-          var doc = Element.fromDom(rawDoc);
+      // This fires a load event on Edge
+      Writer.write(iframe, html);
 
-          var rawBody = rawDoc.body;
-          if (rawBody === undefined) throw "sandbox iframe does not have a body";
-          var body = Element.fromDom(rawBody);
+      var rawDoc = iframe.dom().contentWindow.document;
+      if (rawDoc === undefined) throw "sandbox iframe load event did not fire correctly";
+      var doc = Element.fromDom(rawDoc);
 
-          // cache
-          var result = f(doc, body);
+      var rawBody = rawDoc.body;
+      if (rawBody === undefined) throw "sandbox iframe does not have a body";
+      var body = Element.fromDom(rawBody);
 
-          // unbind and remove everything
-          Remove.remove(outputContainer);
+      // cache
+      var result = f(doc, body);
 
-          // setTimeout should allow the garbage collector to cleanup if necessary
-          setTimeout(Fun.curry(callback, result), 0);
-        });
-        Insert.append(outputContainer, iframe);
-        Insert.append(uiContainer, outputContainer);
-      };
+      // unbind and remove everything
+      Remove.remove(outputContainer);
 
-      return {
-        play: play
-      };
-    };
-  }
-);
+      // setTimeout should allow the garbage collector to cleanup if necessary
+      setTimeout(Fun.curry(callback, result), 0);
+    });
+    Insert.append(outputContainer, iframe);
+    Insert.append(uiContainer, outputContainer);
+  };
+
+  return {
+    play: play
+  };
+};
