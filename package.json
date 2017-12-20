@@ -7,8 +7,8 @@
     "url": "https://github.com/ephox/photon"
   },
   "files": [
-    "lib",
-    "src",
+    "lib/main",
+    "src/main",
     "readme.md",
     "LEGAL.txt",
     "CHANGELOG.txt",
@@ -18,6 +18,9 @@
     "@ephox/katamari": "*",
     "@ephox/sugar": "*"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@ephox/bedrock": "*",
     "awesome-typescript-loader": "^3.4.1",
@@ -26,7 +29,8 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "test": "bolt test config/bolt/atomic.js $(find src/test/js/atomic -name *Test.js)",
+    "test": "bedrock-auto -b phantomjs -d src/test",
+    "test-manual": "bedrock -d src/test",
     "prepublishOnly": "tsc"
   },
   "author": "Ephox Corporation",
