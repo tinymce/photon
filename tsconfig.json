@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "module": "es2015",
+    "lib": ["es2015", "dom"],
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": {
+      "ephox/photon/test/*": ["src/test/ts/module/ephox/photon/test/*"],
+      "ephox/photon/demo/*": ["src/demo/ts/ephox/photon/demo/*"],
+      "ephox/photon/*": ["src/main/ts/ephox/photon/*"],
+      "@ephox/photon": ["src/main/ts/ephox/photon/api/Main.ts"]
+    }
+  },
+  "include": [
+    "src/demo/ts",
+    "src/main/ts",
+    "src/test/ts",
+    "node_modules/@ephox/**/*/api/Main.d.ts"
+  ]
+}
