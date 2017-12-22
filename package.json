@@ -1,7 +1,7 @@
 {
   "name": "@ephox/photon",
   "description": "This project handles absolute position calculations in iframes.",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/ephox/photon"
@@ -15,14 +15,14 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@ephox/katamari": "*",
-    "@ephox/sugar": "*"
+    "@ephox/katamari": "latest",
+    "@ephox/sugar": "latest"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@ephox/bedrock": "*",
+    "@ephox/bedrock": "latest",
     "awesome-typescript-loader": "^3.4.1",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.2",
