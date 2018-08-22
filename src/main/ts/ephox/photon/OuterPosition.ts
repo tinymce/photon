@@ -1,11 +1,9 @@
-import { Arr } from '@ephox/katamari';
-import { Fun } from '@ephox/katamari';
+import { document } from '@ephox/dom-globals';
+import { Arr, Fun } from '@ephox/katamari';
+import { Element, Location, Position, Scroll } from '@ephox/sugar';
+
 import Frames from './Frames';
 import Navigation from './Navigation';
-import { Element } from '@ephox/sugar';
-import { Location } from '@ephox/sugar';
-import { Position } from '@ephox/sugar';
-import { Scroll } from '@ephox/sugar';
 
 var find = function (element) {
   var doc = Element.fromDom(document);

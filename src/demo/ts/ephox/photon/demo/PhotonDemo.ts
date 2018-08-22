@@ -1,11 +1,8 @@
+import { document } from '@ephox/dom-globals';
+import { Css, DomEvent, Element, Insert, SelectorFind } from '@ephox/sugar';
+import Popup from 'ephox/photon/demo/Popup';
 import OuterPosition from 'ephox/photon/OuterPosition';
 import Reader from 'ephox/photon/Reader';
-import Popup from 'ephox/photon/demo/Popup';
-import { Css } from '@ephox/sugar';
-import { Element } from '@ephox/sugar';
-import { DomEvent } from '@ephox/sugar';
-import { Insert } from '@ephox/sugar';
-import { SelectorFind } from '@ephox/sugar';
 
 var container = Element.fromTag('div');
 
