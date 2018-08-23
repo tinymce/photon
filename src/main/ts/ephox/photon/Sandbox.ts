@@ -1,10 +1,8 @@
+import { setTimeout } from '@ephox/dom-globals';
 import { Fun } from '@ephox/katamari';
+import { Css, DomEvent, Element, Insert, Remove } from '@ephox/sugar';
+
 import Writer from './Writer';
-import { Css } from '@ephox/sugar';
-import { DomEvent } from '@ephox/sugar';
-import { Element } from '@ephox/sugar';
-import { Insert } from '@ephox/sugar';
-import { Remove } from '@ephox/sugar';
 
 
 

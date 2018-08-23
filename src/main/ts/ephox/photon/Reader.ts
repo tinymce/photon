@@ -1,3 +1,4 @@
+import { console } from '@ephox/dom-globals';
 import { Option } from '@ephox/katamari';
 import { Element } from '@ephox/sugar';
 
