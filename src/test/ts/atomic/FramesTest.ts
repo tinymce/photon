@@ -1,6 +1,6 @@
+import { UnitTest, assert } from '@ephox/bedrock-client';
 import { Option } from '@ephox/katamari';
 import Frames from 'ephox/photon/Frames';
-import { UnitTest, assert } from '@ephox/bedrock';
 
 UnitTest.test('FramesTest', function() {
   /* This is a really weak test case. The idea is to separate the actual navigation logic out from the 

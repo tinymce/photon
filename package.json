@@ -18,19 +18,20 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@ephox/dom-globals": "latest",
-    "@ephox/katamari": "latest",
-    "@ephox/sugar": "latest"
+    "@ephox/dom-globals": "^1.1.2",
+    "@ephox/katamari": "^4.0.5",
+    "@ephox/sugar": "^5.0.17"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@ephox/bedrock": "latest",
-    "awesome-typescript-loader": "^3.4.1",
+    "@ephox/bedrock-client": "^9.3.2",
+    "@ephox/bedrock-server": "^9.3.2",
+    "awesome-typescript-loader": "^5.2.0",
     "source-map-loader": "^0.2.3",
     "typescript": "^3.0.1",
-    "webpack": "^3.10.0"
+    "webpack": "^4.25.1"
   },
   "scripts": {
     "test": "bedrock-auto -b phantomjs -d src/test",
