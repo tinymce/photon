@@ -4,7 +4,7 @@
   "version": "3.0.7",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ephox/photon"
+    "url": "https://github.com/tinymce/photon"
   },
   "files": [
     "lib/main",
@@ -38,7 +38,7 @@
     "test-manual": "bedrock -d src/test",
     "prepublishOnly": "tsc"
   },
-  "author": "Ephox Corporation",
+  "author": "Tiny Technologies Inc",
   "license": "Apache-2.0",
   "main": "./lib/main/ts/ephox/photon/api/Main.js",
   "module": "./lib/main/ts/ephox/photon/api/Main.js",
