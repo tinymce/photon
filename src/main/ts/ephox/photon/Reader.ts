@@ -1,12 +1,12 @@
-import { console } from '@ephox/dom-globals';
+import { console, Document, HTMLIFrameElement } from '@ephox/dom-globals';
 import { Option } from '@ephox/katamari';
-import { Element } from '@ephox/sugar';
+import { Element, Traverse } from '@ephox/sugar';
 
-var iframeDoc = function (element) {
-  var dom = element.dom();
+const iframeDoc = (element: Element<HTMLIFrameElement>): Option<Element<Document>> => {
+  const dom = element.dom();
   try {
-    var idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;
-    return idoc !== undefined && idoc !== null ? Option.some(Element.fromDom(idoc)) : Option.none();
+    const idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;
+    return Option.from(idoc).map(Element.fromDom);
   } catch (err) {
     // ASSUMPTION: Permission errors result in an unusable iframe.
     console.log('Error reading iframe: ', dom);
@@ -15,15 +15,11 @@ var iframeDoc = function (element) {
   }
 };
 
-var doc = function (element) {
-  var optDoc = iframeDoc(element);
-  return optDoc.fold(function () {
-    return element;
-  }, function (v) {
-    return v;
-  });
+const doc = (element: Element<HTMLIFrameElement>) => {
+  const optDoc = iframeDoc(element);
+  return optDoc.fold(() => Traverse.owner(element), (v) => v);
 };
 
-export default <any> {
-  doc: doc
+export {
+  doc
 };

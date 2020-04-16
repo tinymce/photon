@@ -1,18 +1,18 @@
-import { document } from '@ephox/dom-globals';
+import { document, Element as DomElement } from '@ephox/dom-globals';
 import { Css, DomEvent, Element, Insert, SelectorFind } from '@ephox/sugar';
 import Popup from 'ephox/photon/demo/Popup';
-import OuterPosition from 'ephox/photon/OuterPosition';
-import Reader from 'ephox/photon/Reader';
+import * as OuterPosition from 'ephox/photon/OuterPosition';
+import * as Reader from 'ephox/photon/Reader';
 
-var container = Element.fromTag('div');
+const container = Element.fromTag('div');
 
-var frame = function () {
-  var r = Element.fromTag('iframe');
+const frame = function () {
+  const r = Element.fromTag('iframe');
   Css.set(r, 'src', '#s' + Math.random());
   return r;
 };
 
-var f1 = frame();
+const f1 = frame();
 Css.setAll(f1, {
   width: '800px',
   height: '450px',
@@ -21,13 +21,13 @@ Css.setAll(f1, {
 });
 
 DomEvent.bind(f1, 'load', function () {
-  var doc1 = Reader.doc(f1);
-  var c1 = SelectorFind.descendant(doc1, 'body');
+  const doc1 = Reader.doc(f1);
+  const c1 = SelectorFind.descendant(doc1, 'body');
 
-  var button = Element.fromTag('button');
+  const button = Element.fromTag('button');
   Css.set(button, 'float', 'right');
 
-  var f2 = frame();
+  const f2 = frame();
   Css.setAll(f2, {
     left: '50px',
     top: '150px',
@@ -35,12 +35,11 @@ DomEvent.bind(f1, 'load', function () {
   });
 
   DomEvent.bind(f2, 'load', function () {
-    var c2 = SelectorFind.descendant(Reader.doc(f2), 'body');
+    const c2 = SelectorFind.descendant(Reader.doc(f2), 'body');
 
     DomEvent.bind(button, 'click', function () {
-      var doc = Element.fromDom(document);
-      var position = OuterPosition.find(button);
-      var popup = Popup(position);
+      const position = OuterPosition.find(button);
+      const popup = Popup(position);
       Insert.append(Element.fromDom(document.body), popup);
     });
 
@@ -52,11 +51,10 @@ DomEvent.bind(f1, 'load', function () {
   c1.each(function (cc) {
     Insert.append(cc, f2);
 
-    var firstButton = Element.fromTag('button');
+    const firstButton = Element.fromTag('button');
     DomEvent.bind(firstButton, 'click', function () {
-      var doc = Element.fromDom(document);
-      var position = OuterPosition.find(firstButton);
-      var popup = Popup(position);
+      const position = OuterPosition.find(firstButton);
+      const popup = Popup(position);
       Insert.append(Element.fromDom(document.body), popup);
     });
     Insert.append(cc, firstButton);
@@ -68,6 +66,6 @@ Css.setAll(container, {
   height: '500px'
 });
 
-var blob = document.getElementById('ephox-ui');
-var blobElement = Element.fromDom(blob);
+const blob = document.getElementById('ephox-ui') as DomElement;
+const blobElement = Element.fromDom(blob);
 Insert.append(blobElement, container);

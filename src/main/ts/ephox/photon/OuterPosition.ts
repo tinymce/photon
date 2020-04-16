@@ -1,20 +1,20 @@
-import { document } from '@ephox/dom-globals';
+import { document, Element as DomElement } from '@ephox/dom-globals';
 import { Arr, Fun } from '@ephox/katamari';
 import { Element, Location, Position, Scroll } from '@ephox/sugar';
 
-import Frames from './Frames';
-import Navigation from './Navigation';
+import * as Frames from './Frames';
+import * as Navigation from './Navigation';
 
-var find = function (element) {
-  var doc = Element.fromDom(document);
-  var scroll = Scroll.get(doc);
-  var path = Frames.pathTo(element, Navigation);
+const find = (element: Element<DomElement>) => {
+  const doc = Element.fromDom(document);
+  const scroll = Scroll.get(doc);
+  const path = Frames.pathTo(element, Navigation);
 
   return path.fold(Fun.curry(Location.absolute, element), function (frames) {
-    var offset = Location.viewport(element);
+    const offset = Location.viewport(element);
 
-    var r = Arr.foldr(frames, function (b, a) {
-      var loc = Location.viewport(a);
+    const r = Arr.foldr(frames, function (b, a) {
+      const loc = Location.viewport(a);
       return {
         left: b.left + loc.left(),
         top: b.top + loc.top()
@@ -25,6 +25,6 @@ var find = function (element) {
   });
 };
 
-export default <any> {
-  find: find
+export {
+  find
 };
