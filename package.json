@@ -19,8 +19,8 @@
   ],
   "dependencies": {
     "@ephox/dom-globals": "^1.1.2",
-    "@ephox/katamari": "^4.0.5",
-    "@ephox/sugar": "^5.0.17"
+    "@ephox/katamari": "^5.0.0",
+    "@ephox/sugar": "^5.1.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
