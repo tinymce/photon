@@ -10,10 +10,10 @@ const find = (element: Element<DomElement>) => {
   const scroll = Scroll.get(doc);
   const path = Frames.pathTo(element, Navigation);
 
-  return path.fold(Fun.curry(Location.absolute, element), function (frames) {
+  return path.fold(Fun.curry(Location.absolute, element), (frames) => {
     const offset = Location.viewport(element);
 
-    const r = Arr.foldr(frames, function (b, a) {
+    const r = Arr.foldr(frames, (b, a) => {
       const loc = Location.viewport(a);
       return {
         left: b.left + loc.left(),

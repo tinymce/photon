@@ -3,8 +3,8 @@ import { Option } from '@ephox/katamari';
 import { Element, Traverse } from '@ephox/sugar';
 
 export interface Navigation<E, D> {
-  view: (doc: D) => Option<E>;
-  owner: (element: E) => D;
+  readonly view: (doc: D) => Option<E>;
+  readonly owner: (element: E) => D;
 }
 
 const view = (doc: Element<Document>) => {
