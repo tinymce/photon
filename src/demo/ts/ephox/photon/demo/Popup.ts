@@ -1,10 +1,8 @@
-import { Css } from '@ephox/sugar';
+import { Css, Position } from '@ephox/sugar';
 import { Element } from '@ephox/sugar';
 
-
-
-export default <any> function (position) {
-  var popup = Element.fromTag('div');
+export default function (position: Position) {
+  const popup = Element.fromTag('div');
   Css.setAll(popup, {
     position: 'absolute',
     left: position.left() + 'px',
