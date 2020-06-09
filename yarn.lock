@@ -4,7 +4,7 @@
 
 "@ephox/bedrock-client@^9.3.2":
   version "9.3.2"
-  resolved "http://nexus:8081/repository/npm-group/@ephox/bedrock-client/-/bedrock-client-9.3.2.tgz#dcdaba1e4aee5648c8ca63a61ff818ad6d5538f2"
+  resolved "https://registry.yarnpkg.com/@ephox/bedrock-client/-/bedrock-client-9.3.2.tgz#dcdaba1e4aee5648c8ca63a61ff818ad6d5538f2"
   integrity sha512-M1OlfPU82pl6RLIsRJZWrlzaYXIKgyouMCrMZZ4C4nKJa0nASYQHhqtbFzeEDMyIG5kU8sFC70TxTS7MhA8SdQ==
   dependencies:
     "@ephox/bedrock-common" "^9.3.2"
@@ -66,12 +66,12 @@
 
 "@ephox/dispute@^1.0.3":
   version "1.0.4"
-  resolved "http://nexus:8081/repository/npm-group/@ephox/dispute/-/dispute-1.0.4.tgz#9cc03a740548f2b3db43ac544050b7e3b36651dd"
+  resolved "https://registry.yarnpkg.com/@ephox/dispute/-/dispute-1.0.4.tgz#9cc03a740548f2b3db43ac544050b7e3b36651dd"
   integrity sha512-PzklC1q7Flovi/pnxTFsY1pPKaEAm0whC+lFXM2Sh4Fc+lUt7A/UMRoV9bg9DyeTbD/mWEr/hvdyJp6hI14uKg==
 
 "@ephox/dom-globals@^1.1.2":
   version "1.1.2"
-  resolved "http://nexus:8081/repository/npm-group/@ephox/dom-globals/-/dom-globals-1.1.2.tgz#cb181a7652c1f097c9920fcf551c1fe202f70041"
+  resolved "https://registry.yarnpkg.com/@ephox/dom-globals/-/dom-globals-1.1.2.tgz#cb181a7652c1f097c9920fcf551c1fe202f70041"
   integrity sha512-wTcfYP5FH4n5tzVMaE8a7T6XqdTFiGfGAC6LiuCYPBh4mOeIEN5WkiPuAy+trJBl0wRdlwKl+XmhIW06Xf4tpg==
 
 "@ephox/katamari@^5.0.0", "@ephox/katamari@^5.0.2":
@@ -103,8 +103,8 @@
 
 "@ephox/wrap-promise-polyfill@^2.2.0":
   version "2.2.0"
-  resolved "http://nexus:8081/repository/npm-group/@ephox/wrap-promise-polyfill/-/wrap-promise-polyfill-2.2.0.tgz#866e58876a47e9689e4f69ad13dfc0b2b5d50e7c"
-  integrity sha512-l/Uus/bO5usluwZXIHutD7BwM+MKHKh4AnoqbeQ68bTZQoLbpKqqvOiPmaKeG8L1ky9fM7SHFbu/fi/wQ5sshQ==
+  resolved "https://registry.yarnpkg.com/@ephox/wrap-promise-polyfill/-/wrap-promise-polyfill-2.2.0.tgz#ea11e0a88320b5096dfed6249e169621c9853f7d"
+  integrity sha512-bTvZa0VEBPtCbcl05lYDjMre1WruTRXReCo8Yp2JrOnkf2PK8jgzBrOYPplbjgXvh6ToPqK2wiaeeBApYYgUSQ==
 
 "@types/caseless@*":
   version "0.12.2"
