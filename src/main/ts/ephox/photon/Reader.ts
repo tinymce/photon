@@ -1,21 +1,20 @@
-import { console, Document, HTMLIFrameElement } from '@ephox/dom-globals';
-import { Option, Options } from '@ephox/katamari';
-import { Element, Traverse } from '@ephox/sugar';
+import { Optional, Optionals } from '@ephox/katamari';
+import { SugarElement, Traverse } from '@ephox/sugar';
 
-const iframeDoc = (element: Element<HTMLIFrameElement>): Option<Element<Document>> => {
-  const dom = element.dom();
+const iframeDoc = (element: SugarElement<HTMLIFrameElement>): Optional<SugarElement<Document>> => {
+  const dom = element.dom;
   try {
     const idoc = dom.contentWindow ? dom.contentWindow.document : dom.contentDocument;
-    return Options.mapFrom(idoc, Element.fromDom);
+    return Optionals.mapFrom(idoc, SugarElement.fromDom);
   } catch (err) {
     // ASSUMPTION: Permission errors result in an unusable iframe.
     console.log('Error reading iframe: ', dom);
     console.log('Error was: ' + err);
-    return Option.none();
+    return Optional.none();
   }
 };
 
-const doc = (element: Element<HTMLIFrameElement>) => {
+const doc = (element: SugarElement<HTMLIFrameElement>) => {
   const optDoc = iframeDoc(element);
   return optDoc.getOrThunk(() => Traverse.owner(element));
 };

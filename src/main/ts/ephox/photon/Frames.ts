@@ -1,5 +1,5 @@
 import { Fun } from '@ephox/katamari';
-import { Option } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 
 import { Navigation } from './Navigation';
 
@@ -12,10 +12,10 @@ const walkUp = <E, D>(navigation: Navigation<E, D>, doc: D): E[] => {
   });
 };
 
-const pathTo = <E, D>(element: E, navigation: Navigation<E, D>): Option<E[]> => {
+const pathTo = <E, D>(element: E, navigation: Navigation<E, D>): Optional<E[]> => {
   const d = navigation.owner(element);
   const paths = walkUp(navigation, d);
-  return Option.some(paths);
+  return Optional.some(paths);
 };
 
 export {
