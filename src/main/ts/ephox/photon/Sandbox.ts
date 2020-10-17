@@ -1,10 +1,9 @@
-import { Element as DomElement, HTMLDocument, HTMLElement, setTimeout } from '@ephox/dom-globals';
 import { Fun } from '@ephox/katamari';
-import { Css, DomEvent, Element, Insert, Remove } from '@ephox/sugar';
+import { Css, DomEvent, SugarElement, Insert, Remove } from '@ephox/sugar';
 
 import * as Writer from './Writer';
 
-export const Sandbox = (uiContainer: Element<DomElement>) => {
+export const Sandbox = (uiContainer: SugarElement<Element>) => {
    /**
     * Creates a sandbox to play in.
     *
@@ -19,9 +18,9 @@ export const Sandbox = (uiContainer: Element<DomElement>) => {
     * callback: (A -> Unit)
     *   function that receives the output of `f` when the iframe has been cleaned up
     */
-  const play = <T>(html: string, f: (document: Element<HTMLDocument>, body: Element<HTMLElement>) => T, callback: (result: T) => void) => {
-    const outputContainer = Element.fromTag('div');
-    const iframe = Element.fromTag('iframe');
+  const play = <T>(html: string, f: (document: SugarElement<HTMLDocument>, body: SugarElement<HTMLElement>) => T, callback: (result: T) => void) => {
+    const outputContainer = SugarElement.fromTag('div');
+    const iframe = SugarElement.fromTag('iframe');
 
     Css.setAll(outputContainer, {
       display: 'none'
@@ -33,13 +32,13 @@ export const Sandbox = (uiContainer: Element<DomElement>) => {
       // This fires a load event on Edge
       Writer.write(iframe, html);
 
-      const rawDoc = iframe.dom().contentWindow?.document;
+      const rawDoc = iframe.dom.contentWindow?.document;
       if (rawDoc === undefined) throw "sandbox iframe load event did not fire correctly";
-      const doc = Element.fromDom(rawDoc);
+      const doc = SugarElement.fromDom(rawDoc);
 
-      const rawBody = doc.dom().body;
+      const rawBody = doc.dom.body;
       if (rawBody === undefined) throw "sandbox iframe does not have a body";
-      const body = Element.fromDom(rawBody);
+      const body = SugarElement.fromDom(rawBody);
 
       // cache
       const result = f(doc, body);

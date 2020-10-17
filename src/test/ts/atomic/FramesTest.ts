@@ -1,16 +1,16 @@
 import { UnitTest, assert } from '@ephox/bedrock-client';
-import { Option } from '@ephox/katamari';
+import { Optional } from '@ephox/katamari';
 import * as Frames from 'ephox/photon/Frames';
 import { Navigation } from 'ephox/photon/Navigation';
 
 UnitTest.test('FramesTest', function() {
-  /* This is a really weak test case. The idea is to separate the actual navigation logic out from the 
+  /* This is a really weak test case. The idea is to separate the actual navigation logic out from the
   concept.
   */
 
   const nav: Navigation<string, string> = {
     view: (o: string) => {
-      return o.length > 2 ? Option.some('v_' + o.substring(2, o.length - 1)) : Option.none();
+      return o.length > 2 ? Optional.some('v_' + o.substring(2, o.length - 1)) : Optional.none();
     },
 
     owner: (v: string) => {
