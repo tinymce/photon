@@ -2,8 +2,10 @@ import { SugarBody, SugarElement } from '@ephox/sugar';
 
 import * as Reader from './Reader';
 
-const write = (element: SugarElement<HTMLIFrameElement>, content: string) => {
-  if (!SugarBody.inBody(element)) throw 'Internal error: attempted to write to an iframe that is not in the DOM';
+const write = (element: SugarElement<HTMLIFrameElement>, content: string): void => {
+  if (!SugarBody.inBody(element)) {
+    throw new Error('Internal error: attempted to write to an iframe that is not in the DOM');
+  }
 
   const doc = Reader.doc(element);
   const dom = doc.dom;

@@ -5,7 +5,7 @@ import * as Reader from 'ephox/photon/Reader';
 
 const container = SugarElement.fromTag('div');
 
-const frame = function () {
+const frame = () => {
   const r = SugarElement.fromTag('iframe');
   Css.set(r, 'src', '#s' + Math.random());
   return r;
@@ -19,7 +19,7 @@ Css.setAll(f1, {
   position: 'absolute'
 });
 
-DomEvent.bind(f1, 'load', function () {
+DomEvent.bind(f1, 'load', () => {
   const doc1 = Reader.doc(f1);
   const c1 = SelectorFind.descendant(doc1, 'body');
 
@@ -33,25 +33,25 @@ DomEvent.bind(f1, 'load', function () {
     position: 'absolute'
   });
 
-  DomEvent.bind(f2, 'load', function () {
+  DomEvent.bind(f2, 'load', () => {
     const c2 = SelectorFind.descendant(Reader.doc(f2), 'body');
 
-    DomEvent.bind(button, 'click', function () {
+    DomEvent.bind(button, 'click', () => {
       const position = OuterPosition.find(button);
       const popup = Popup(position);
       Insert.append(SugarElement.fromDom(document.body), popup);
     });
 
-    c2.each(function (cc) {
+    c2.each((cc) => {
       Insert.append(cc, button);
     });
   });
 
-  c1.each(function (cc) {
+  c1.each((cc) => {
     Insert.append(cc, f2);
 
     const firstButton = SugarElement.fromTag('button');
-    DomEvent.bind(firstButton, 'click', function () {
+    DomEvent.bind(firstButton, 'click', () => {
       const position = OuterPosition.find(firstButton);
       const popup = Popup(position);
       Insert.append(SugarElement.fromDom(document.body), popup);

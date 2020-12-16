@@ -1,5 +1,4 @@
-import { Fun } from '@ephox/katamari';
-import { Optional } from '@ephox/katamari';
+import { Fun, Optional } from '@ephox/katamari';
 
 import { Navigation } from './Navigation';
 
@@ -8,7 +7,7 @@ const walkUp = <E, D>(navigation: Navigation<E, D>, doc: D): E[] => {
   return frame.fold(Fun.constant([]), (f) => {
     const parent = navigation.owner(f);
     const rest = walkUp(navigation, parent);
-    return [f].concat(rest);
+    return [ f ].concat(rest);
   });
 };
 

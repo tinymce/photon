@@ -3,7 +3,7 @@ import { Optional } from '@ephox/katamari';
 import * as Frames from 'ephox/photon/Frames';
 import { Navigation } from 'ephox/photon/Navigation';
 
-UnitTest.test('FramesTest', function() {
+UnitTest.test('FramesTest', () => {
   /* This is a really weak test case. The idea is to separate the actual navigation logic out from the
   concept.
   */

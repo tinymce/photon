@@ -3,13 +3,18 @@ import { Css, DomEvent, SugarElement, Insert, Remove } from '@ephox/sugar';
 
 import * as Writer from './Writer';
 
-export const Sandbox = (uiContainer: SugarElement<Element>) => {
-   /**
+export interface Sandbox {
+  readonly play: <T>(html: string, f: (document: SugarElement<HTMLDocument>, body: SugarElement<HTMLElement>) => T, callback: (result: T) => void) => void;
+}
+
+export const Sandbox = (uiContainer: SugarElement<Element>): Sandbox => {
+  /**
     * Creates a sandbox to play in.
     *
     * Asynchronously creates an iframe, runs the synchronous function `f` on the DOM, and then passes the result to the callback.
     *
-    * This is done so that the sandbox can guarantee the iframe has been removed from the page, and available for garbage collection, before the callback is executed.
+    * This is done so that the sandbox can guarantee the iframe has been removed from the page, and available for garbage collection,
+    * before the callback is executed.
     *
     * html:
     *   source to load into the iframe
@@ -26,18 +31,22 @@ export const Sandbox = (uiContainer: SugarElement<Element>) => {
       display: 'none'
     });
 
-    const load = DomEvent.bind(iframe, 'load',  () => {
+    const load = DomEvent.bind(iframe, 'load', () => {
       load.unbind();
 
       // This fires a load event on Edge
       Writer.write(iframe, html);
 
       const rawDoc = iframe.dom.contentWindow?.document;
-      if (rawDoc === undefined) throw "sandbox iframe load event did not fire correctly";
+      if (rawDoc === undefined) {
+        throw new Error('sandbox iframe load event did not fire correctly');
+      }
       const doc = SugarElement.fromDom(rawDoc);
 
       const rawBody = doc.dom.body;
-      if (rawBody === undefined) throw "sandbox iframe does not have a body";
+      if (rawBody === undefined) {
+        throw new Error('sandbox iframe does not have a body');
+      }
       const body = SugarElement.fromDom(rawBody);
 
       // cache
