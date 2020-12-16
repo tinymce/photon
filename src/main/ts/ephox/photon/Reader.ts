@@ -8,13 +8,15 @@ const iframeDoc = (element: SugarElement<HTMLIFrameElement>): Optional<SugarElem
     return Optionals.mapFrom(idoc, SugarElement.fromDom);
   } catch (err) {
     // ASSUMPTION: Permission errors result in an unusable iframe.
+    // eslint-disable-next-line no-console
     console.log('Error reading iframe: ', dom);
+    // eslint-disable-next-line no-console
     console.log('Error was: ' + err);
     return Optional.none();
   }
 };
 
-const doc = (element: SugarElement<HTMLIFrameElement>) => {
+const doc = (element: SugarElement<HTMLIFrameElement>): SugarElement<Document> => {
   const optDoc = iframeDoc(element);
   return optDoc.getOrThunk(() => Traverse.owner(element));
 };

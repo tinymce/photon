@@ -14,8 +14,7 @@
     "paths": {
       "ephox/photon/test/*": ["src/test/ts/module/ephox/photon/test/*"],
       "ephox/photon/demo/*": ["src/demo/ts/ephox/photon/demo/*"],
-      "ephox/photon/*": ["src/main/ts/ephox/photon/*"],
-      "@ephox/photon": ["src/main/ts/ephox/photon/api/Main.ts"]
+      "ephox/photon/*": ["src/main/ts/ephox/photon/*"]
     }
   },
   "include": [
