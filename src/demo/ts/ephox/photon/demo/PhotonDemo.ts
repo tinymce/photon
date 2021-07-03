@@ -1,4 +1,5 @@
 import { Css, DomEvent, Insert, SelectorFind, SugarBody, SugarElement } from '@ephox/sugar';
+
 import Popup from 'ephox/photon/demo/Popup';
 import * as OuterPosition from 'ephox/photon/OuterPosition';
 import * as Reader from 'ephox/photon/Reader';

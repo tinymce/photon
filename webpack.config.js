@@ -1,22 +1,31 @@
-const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
+const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const path = require('path');
 
 module.exports = {
   entry: './src/demo/ts/ephox/photon/demo/PhotonDemo.ts',
   devtool: 'source-map',
+  mode: 'development',
+  target: [ 'web', 'es5' ],
 
   resolve: {
     extensions: ['.ts', '.js'],
     plugins: [
       new TsConfigPathsPlugin({
-        baseUrl: '.',
-        compiler: 'typescript'
-      }),
+        extensions: [ '.ts', '.js' ]
+      })
     ]
   },
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        resolve: {
+          fullySpecified: false
+        }
+      },
+
       {
         test: /\.js$/,
         use: ['source-map-loader'],
@@ -25,13 +34,20 @@ module.exports = {
 
       {
         test: /\.ts$/,
-        use: ['awesome-typescript-loader']
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true
+          }
+        }]
       }
     ]
   },
 
   plugins: [
-    new CheckerPlugin()
+    new ForkTsCheckerWebpackPlugin({
+      async: true
+    })
   ],
 
   output: {
