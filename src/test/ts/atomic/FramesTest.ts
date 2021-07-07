@@ -1,5 +1,6 @@
 import { UnitTest, assert } from '@ephox/bedrock-client';
 import { Optional } from '@ephox/katamari';
+
 import * as Frames from 'ephox/photon/Frames';
 import { Navigation } from 'ephox/photon/Navigation';
 

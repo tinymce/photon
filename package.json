@@ -25,21 +25,25 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@ephox/bedrock-client": "^11.1.1",
-    "@ephox/bedrock-server": "^11.2.0",
-    "@tinymce/beehive-flow": "^0.14.0",
-    "@tinymce/eslint-plugin": "^1.7.2",
-    "awesome-typescript-loader": "^5.2.0",
-    "source-map-loader": "^1.1.1",
+    "@ephox/bedrock-client": "^11.3.0",
+    "@ephox/bedrock-server": "^11.3.1",
+    "@tinymce/beehive-flow": "^0.16.0",
+    "@tinymce/eslint-plugin": "^1.9.1",
+    "fork-ts-checker-webpack-plugin": "^6.2.12",
+    "source-map-loader": "^3.0.0",
+    "ts-loader": "^9.2.3",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.0.3",
-    "webpack": "^4.25.1"
+    "webpack": "^5.42.0",
+    "webpack-cli": "^4.7.2"
   },
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "test": "yarn lint && bedrock-auto -b phantomjs -d src/test",
+    "test": "yarn lint && bedrock-auto -b chrome-headless -d src/test",
     "test-manual": "bedrock -d src/test",
-    "prepublishOnly": "tsc"
+    "prepublishOnly": "tsc",
+    "start": "webpack-cli --watch"
   },
   "author": "Tiny Technologies Inc",
   "license": "Apache-2.0",
