@@ -1,4 +1,4 @@
-import { UnitTest, assert } from '@ephox/bedrock-client';
+import { Assert, UnitTest } from '@ephox/bedrock-client';
 import { Optional } from '@ephox/katamari';
 
 import * as Frames from 'ephox/photon/Frames';
@@ -21,7 +21,7 @@ UnitTest.test('FramesTest', () => {
 
   const check = (expected: string[], input: string) => {
     const actual = Frames.pathTo(input, nav);
-    assert.eq(expected, actual.getOrDie());
+    Assert.eq('', expected, actual.getOrDie());
   };
 
   check([ 'v_de', 'v_d', 'v_' ], 'v_def');
