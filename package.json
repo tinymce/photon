@@ -18,8 +18,8 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@ephox/katamari": "^9.0.1",
-    "@ephox/sugar": "^9.0.1"
+    "@ephox/katamari": "^9.0.2-alpha.0",
+    "@ephox/sugar": "^9.0.2-alpha.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
