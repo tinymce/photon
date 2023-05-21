@@ -10,7 +10,7 @@ const write = (element: SugarElement<HTMLIFrameElement>, content: string): void 
   const doc = Reader.doc(element);
   const dom = doc.dom;
   dom.open('text/html', 'replace'); // Dont create new history https://bugzilla.mozilla.org/show_bug.cgi?id=1368869
-  dom.writeln(content);
+  dom.write(content);
   dom.close();
 };
 

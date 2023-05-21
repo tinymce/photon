@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Writer.write api no longer adds a new line at the end of the content inserted. #TINY-9500
+
 ## 6.0.1 - 2022-06-29
 
 ### Changed
